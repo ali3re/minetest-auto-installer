@@ -5,6 +5,7 @@ import getpass
 
 USER_NAME = getpass.getuser()
 DEPENDENCIES = [
+    'git',
     'g++',
     'make',
     'libc6-dev',
