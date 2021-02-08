@@ -5,7 +5,6 @@ import getpass
 
 USER_NAME = getpass.getuser()
 DEPENDENCIES = [
-    'git',
     'g++',
     'make',
     'libc6-dev',
@@ -79,6 +78,7 @@ class Main_file:
 
     @staticmethod
     def getting_src():
+        os.system('sudo apt install git')
         print('Collecting Source Minetest...')
         os.system('git clone --depth 1 https://github.com/minetest/minetest.git >> install.log')
         os.chdir('./minetest')
