@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 import os
 import multiprocessing
-import getpass
 
-USER_NAME = getpass.getuser()
+
 DEPENDENCIES = [
     'g++',
     'make',
@@ -62,8 +61,8 @@ class Main_file:
         self.proc_in = [self.install_deps, self.getting_src]
         self.proc_out = []
         self.initialize()
-        # self.add_to_path()
         self.add_to_desktop()
+        self.add_to_path()
 
     def initialize(self):
         self.process_launcher()
@@ -94,9 +93,8 @@ class Main_file:
             os.system(f'rm -r {file}')
 
     def add_to_path(self):
-        path_of_exe = os.getcwd() + '/bin/minetest'
-        os.system(f'sudo ln -s {path_of_exe} /usr/bin/minetest')
-        print(os.listdir())
+        path_of_exe = os.getcwd() + '/minetest/bin/minetest'
+        os.symlink(path_of_exe,'/usr/bin/minetests')
         print("Added to path")
 
 
@@ -114,7 +112,6 @@ Type=Application"""
 
         with open(f"/usr/share/applications/minetest.desktop",'w') as file:
             file.write(data)
-            os.system('sudo chown $USER:$USER ./minetest')
     
 
         print(path_of_exe,path_of_icon)
@@ -130,3 +127,4 @@ Type=Application"""
 
 if __name__ == '__main__':
     start = Main_file()
+    # os.system(f'sudo chown :{USER_NAME} ./')
